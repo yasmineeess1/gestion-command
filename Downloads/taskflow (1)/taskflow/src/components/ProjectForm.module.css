@@ -1,0 +1,57 @@
+/* src/components/ProjectForm.module.css */
+
+.form {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* flex, gap */
+  margin-bottom: 1rem;
+}
+
+.input {
+  padding: 0.5rem; /* padding */
+  border: 1px solid #ddd; /* border */
+  border-radius: 6px; /* border-radius */
+  outline: none;
+  flex: 1;
+}
+
+.input:focus {
+  border-color: #1B8C3E; /* focus vert */
+  box-shadow: 0 0 0 2px rgba(27, 140, 62, 0.2);
+}
+
+.colorPicker {
+  width: 40px; /* 40px */
+  height: 36px; /* 36px */
+  padding: 0;
+  border: none; /* no border */
+  background: none;
+  cursor: pointer;
+}
+
+.submit {
+  padding: 0.5rem 1rem;
+  background-color: #1B8C3E; /* fond vert */
+  color: white; /* blanc */
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.submit:hover {
+  background-color: #157a33;
+}
+
+.cancel {
+  padding: 0.5rem 1rem;
+  background-color: #6c757d; /* fond gris */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cancel:hover {
+  background-color: #5a6268;
+}

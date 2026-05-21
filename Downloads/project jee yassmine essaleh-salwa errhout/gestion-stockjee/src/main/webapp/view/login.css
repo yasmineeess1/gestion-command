@@ -1,0 +1,549 @@
+/* ============================================
+   MODERN AUTHENTICATION UI - ENHANCED CSS
+   Variables, Animations & Premium Effects
+   ============================================ */
+
+/* CSS VARIABLES (Design System) */
+:root {
+    /* Primary Colors */
+    --primary-light: #56baed;
+    --primary-main: #3a9bd5;
+    --primary-dark: #2c7fb0;
+    --primary-gradient: linear-gradient(135deg, #56baed 0%, #2f8fc9 100%);
+    --primary-gradient-hover: linear-gradient(135deg, #3a9bd5 0%, #2678a8 100%);
+    
+    /* Neutral Colors */
+    --white: #ffffff;
+    --gray-50: #fafbfc;
+    --gray-100: #f6f9fe;
+    --gray-200: #eef2f8;
+    --gray-300: #e2e8f0;
+    --gray-400: #cbd5e1;
+    --gray-500: #94a3b8;
+    --gray-600: #64748b;
+    --gray-700: #334155;
+    --gray-800: #1e293b;
+    --gray-900: #0f172a;
+    
+    /* Accent Colors */
+    --success: #10b981;
+    --error: #ef4444;
+    --warning: #f59e0b;
+    --info: #3b82f6;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    --shadow-primary: 0 10px 30px 0 rgba(86, 186, 237, 0.4);
+    --shadow-primary-lg: 0 20px 40px 0 rgba(86, 186, 237, 0.3);
+    
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    
+    /* Border Radius */
+    --radius-sm: 0.375rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-2xl: 1.5rem;
+    --radius-full: 9999px;
+    
+    /* Transitions */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ============================================
+   BASE & RESET
+   ============================================ */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background: linear-gradient(135deg, #56baed 0%, #2680b0 50%, #1a668f 100%);
+    min-height: 100%;
+    position: relative;
+}
+
+html::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+body {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    backdrop-filter: blur(0px);
+}
+
+/* ============================================
+   TYPOGRAPHY & LINKS
+   ============================================ */
+a {
+    color: var(--primary-main);
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+    transition: all var(--transition-base);
+}
+
+a:hover {
+    color: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+h2 {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+    margin: 40px 8px 10px 8px;
+    color: var(--gray-400);
+    letter-spacing: 1px;
+    transition: all var(--transition-base);
+}
+
+/* ============================================
+   LAYOUT COMPONENTS
+   ============================================ */
+.wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    min-height: 100%;
+    padding: var(--spacing-xl);
+    position: relative;
+    z-index: 1;
+}
+
+#formContent {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-2xl);
+    width: 90%;
+    max-width: 480px;
+    position: relative;
+    padding: 0;
+    box-shadow: var(--shadow-2xl), var(--shadow-primary-lg);
+    text-align: center;
+    transition: all var(--transition-slow);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#formContent:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(86, 186, 237, 0.2);
+}
+
+#formContent::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--primary-light), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+#formFooter {
+    background: linear-gradient(to bottom, var(--gray-50), var(--white));
+    border-top: 1px solid var(--gray-200);
+    padding: 25px;
+    text-align: center;
+    border-radius: 0 0 var(--radius-2xl) var(--radius-2xl);
+}
+
+/* ============================================
+   TAB COMPONENTS
+   ============================================ */
+h2.inactive {
+    color: var(--gray-400);
+    cursor: pointer;
+    position: relative;
+    transition: all var(--transition-base);
+}
+
+h2.inactive:hover {
+    color: var(--gray-600);
+    transform: translateY(-2px);
+}
+
+h2.active {
+    color: var(--gray-800);
+    border-bottom: 3px solid var(--primary-light);
+    position: relative;
+    animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   FORM ELEMENTS - PREMIUM STYLES
+   ============================================ */
+input[type=button],
+input[type=submit],
+input[type=reset] {
+    background: var(--primary-gradient);
+    border: none;
+    color: white;
+    padding: 14px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    box-shadow: var(--shadow-primary);
+    border-radius: var(--radius-full);
+    margin: 5px 20px 40px 20px;
+    transition: all var(--transition-base);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+input[type=button]::before,
+input[type=submit]::before,
+input[type=reset]::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+input[type=button]:active::before,
+input[type=submit]:active::before,
+input[type=reset]:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+input[type=button]:hover,
+input[type=submit]:hover,
+input[type=reset]:hover {
+    background: var(--primary-gradient-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px 0 rgba(86, 186, 237, 0.5);
+}
+
+input[type=button]:active,
+input[type=submit]:active,
+input[type=reset]:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+input[type=text],
+input[type=email],
+input[type=password] {
+    background-color: var(--gray-100);
+    border: 2px solid transparent;
+    color: var(--gray-800);
+    padding: 14px 20px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.9375rem;
+    margin: 8px 0;
+    width: 100%;
+    transition: all var(--transition-base);
+    border-radius: var(--radius-lg);
+    font-family: inherit;
+}
+
+input[type=text]:focus,
+input[type=email]:focus,
+input[type=password]:focus {
+    background-color: var(--white);
+    border-color: var(--primary-light);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(86, 186, 237, 0.1);
+    transform: translateY(-1px);
+}
+
+input[type=text]::placeholder,
+input[type=email]::placeholder,
+input[type=password]::placeholder {
+    color: var(--gray-400);
+    font-weight: 400;
+}
+
+/* ============================================
+   ANIMATIONS - ENHANCED
+   ============================================ */
+.fadeInDown {
+    animation-name: fadeInDown;
+    animation-duration: 0.8s;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, -50px, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.fadeIn {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-in forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fadeIn.first { animation-delay: 0.2s; }
+.fadeIn.second { animation-delay: 0.4s; }
+.fadeIn.third { animation-delay: 0.6s; }
+.fadeIn.fourth { animation-delay: 0.8s; }
+.fadeIn.fifth { animation-delay: 1s; }
+
+/* ============================================
+   INTERACTIVE EFFECTS
+   ============================================ */
+.underlineHover {
+    position: relative;
+    display: inline-block;
+}
+
+.underlineHover::after {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary-light), var(--primary-dark));
+    content: "";
+    transition: width var(--transition-base);
+}
+
+.underlineHover:hover::after {
+    width: 100%;
+}
+
+.underlineHover:hover {
+    color: var(--gray-800);
+}
+
+/* ============================================
+   ICON & VISUAL ELEMENTS
+   ============================================ */
+#icon {
+    width: 80px;
+    height: 80px;
+    margin: 30px auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary-light), var(--primary-main));
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-primary);
+    transition: all var(--transition-bounce);
+}
+
+#icon:hover {
+    transform: scale(1.05) rotate(5deg);
+    box-shadow: 0 15px 40px 0 rgba(86, 186, 237, 0.5);
+}
+
+/* ============================================
+   FOCUS STATES & ACCESSIBILITY
+   ============================================ */
+*:focus {
+    outline: none;
+}
+
+*:focus-visible {
+    outline: 2px solid var(--primary-light);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+/* ============================================
+   LOADING & STATUS STATES
+   ============================================ */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 640px) {
+    :root {
+        --spacing-xl: 1rem;
+        --radius-2xl: 1rem;
+    }
+    
+    #formContent {
+        width: 95%;
+        margin: 10px;
+    }
+    
+    input[type=button],
+    input[type=submit],
+    input[type=reset] {
+        padding: 12px 24px;
+        font-size: 0.8125rem;
+        margin: 5px 15px 30px 15px;
+    }
+    
+    h2 {
+        font-size: 0.875rem;
+        margin: 30px 6px 8px 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .wrapper {
+        padding: var(--spacing-md);
+    }
+    
+    input[type=text],
+    input[type=email],
+    input[type=password] {
+        padding: 12px 16px;
+        font-size: 0.875rem;
+    }
+}
+
+/* ============================================
+   DARK MODE SUPPORT
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --gray-50: #1a1f2e;
+        --gray-100: #1e2436;
+        --gray-200: #2d3748;
+        --gray-800: #e2e8f0;
+        --gray-900: #f1f5f9;
+    }
+    
+    #formContent {
+        background: rgba(30, 36, 54, 0.95);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    #formFooter {
+        background: linear-gradient(to bottom, #1a1f2e, #161a28);
+        border-top-color: #2d3748;
+    }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.text-center { text-align: center; }
+.mt-2 { margin-top: var(--spacing-lg); }
+.mb-2 { margin-bottom: var(--spacing-lg); }
+.p-3 { padding: var(--spacing-xl); }
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--gray-200);
+    border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-light);
+    border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-main);
+}

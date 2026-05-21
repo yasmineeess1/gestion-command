@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+             http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
+             version="2.2">
+
+    <persistence-unit name="gestion_stock_jpa" transaction-type="RESOURCE_LOCAL">
+
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <class>ma.formations.jdbc.service.model.Article</class>
+        <class>ma.formations.jdbc.service.model.Commande</class>
+        <class>ma.formations.jdbc.service.model.LigneCommande</class>
+        <class>ma.formations.jdbc.service.model.User</class>
+
+        <properties>
+
+            <!-- JDBC CONFIG (IMPORTANT FIX) -->
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://127.0.0.1:3306/gestion_stock_jpa?useSSL=false&amp;serverTimezone=UTC"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="root123"/>
+
+            <!-- HIBERNATE -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+
+            <!-- AUTO TABLE GENERATION -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+
+        </properties>
+
+    </persistence-unit>
+</persistence>

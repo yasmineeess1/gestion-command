@@ -1,0 +1,114 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  TEACHER
+  SURVEILLANT // 🕵️‍♂️ Ajout du rôle pour le suivi terrain
+  ADMIN
+  SUPER_ADMIN
+}
+
+enum DocType {
+  MOTIF_SIMPLE
+  CERTIFICAT_MEDICAL
+}
+
+enum DocStatus {
+  EN_ATTENTE
+  VALID
+  REJETE
+}
+
+model User {
+  id            Int      @id @default(autoincrement())
+  name          String
+  email         String   @unique
+  password      String
+  image         String?
+  classe        String?  // Ex: "Classe 1A" (Pour l'étudiant)
+  role          Role     @default(STUDENT)
+
+  // Nouveaux champs profil
+  telephone     String?
+  adresse       String?
+
+  // Relations
+  absences      Absence[]
+  justificatifs Justificatif[]
+  notes         Note[]
+  sanctions     Sanction[]
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Absence {
+  id             Int      @id @default(autoincrement())
+  date           DateTime @default(now())
+  
+  // 🔄 Flexibilité Enseignant vs Surveillant
+  module         String?  // Rempli par le TEACHER (Ex: "ASP.NET MVC")
+  creneau        String?  // Rempli par le SURVEILLANT (Ex: "08:30 - 10:15")
+  
+  isJustified    Boolean  @default(false)
+  semestre       Int      @default(1)
+
+  // L'étudiant concerné
+  studentId      Int
+  student        User     @relation(fields: [studentId], references: [id])
+
+  // Le justificatif associé (optionnel au départ)
+  justificatifId Int?
+  justificatif   Justificatif? @relation(fields: [justificatifId], references: [id])
+}
+
+model Justificatif {
+  id          Int       @id @default(autoincrement())
+  type        DocType
+  status      DocStatus @default(EN_ATTENTE)
+  fileUrl     String
+  commentaire String?   // Note ou raison de l'admin / étudiant
+  semestre    Int       // Crucial pour vérifier la règle des 3 certificats max
+
+  // L'étudiant qui dépose la pièce
+  studentId   Int
+  student     User      @relation(fields: [studentId], references: [id])
+
+  // Une pièce peut justifier une ou plusieurs absences d'un coup
+  absences    Absence[]
+
+  createdAt   DateTime  @default(now())
+}
+
+model Note {
+  id        Int      @id @default(autoincrement())
+  valeur    Float
+  type      String   // Ex: "CC" ou "EXAM"
+  module    String   // Ex: "NoSQL"
+
+  studentId Int
+  student   User     @relation(fields: [studentId], references: [id])
+
+  createdAt DateTime @default(now())
+}
+
+model Sanction {
+  id          Int      @id @default(autoincrement())
+  raison      String   // Ex: "Absences répétées"
+  niveau      String   // Ex: "Avertissement", "Blâme"
+  description String?
+
+  studentId   Int
+  student     User     @relation(fields: [studentId], references: [id])
+
+  createdAt   DateTime @default(now())
+}
